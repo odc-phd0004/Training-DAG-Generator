@@ -1,0 +1,659 @@
+{
+ "format": "dagtrace.rank_dag/1",
+ "rank": 0,
+ "step": 4,
+ "mode": "fake",
+ "world_size": 2,
+ "parallel_dims": {
+  "pp": 2,
+  "dp_replicate": 1,
+  "dp_shard": 1,
+  "cp": 1,
+  "tp": 1,
+  "ep": 1,
+  "etp": null,
+  "world_size": 2
+ },
+ "summary": {
+  "compute_us": 1216015.336,
+  "compute_us_by_phase": {
+   "fwd": 227020.723,
+   "bwd": 979724.617,
+   "opt": 9269.996
+  },
+  "n_comp_segments": 8,
+  "n_comm": 9,
+  "comm_by_type_axis": {
+   "ALL_REDUCE@world,pp": {
+    "count": 1,
+    "bytes": 4
+   },
+   "RECV@world,pp": {
+    "count": 4,
+    "bytes": 524288
+   },
+   "SEND@world,pp": {
+    "count": 4,
+    "bytes": 524288
+   }
+  },
+  "untagged_c10d_comms": 0,
+  "streams": [
+   "main"
+  ],
+  "unmatched_tags": 0,
+  "unattributed_gpu_us": 0.0,
+  "time_source": "cpu_ops"
+ },
+ "signature": {
+  "sha256": "3e8ded2ef340bca874be5d103ab8d509b0e111ad3b06d601277dd72c2f97e8a1",
+  "n_comm": 9,
+  "n_comp_segments": 8,
+  "n_edges": 30
+ },
+ "warnings": [],
+ "nodes": [
+  {
+   "id": "s0",
+   "type": "COMP",
+   "phase": "fwd",
+   "dur_us": 104796.145,
+   "n_ops": 334,
+   "kernels": 0,
+   "stream": "main",
+   "top_ops": [
+    [
+     "aten::linear",
+     47163.432
+    ],
+    [
+     "aten::rms_norm",
+     14098.46
+    ],
+    [
+     "aten::to",
+     7636.592
+    ],
+    [
+     "aten::scaled_dot_product_attention",
+     6734.14
+    ]
+   ]
+  },
+  {
+   "id": "m0",
+   "type": "COMM",
+   "coll": "SEND",
+   "op": "c10d::send",
+   "bytes": 131072,
+   "in_bytes": 131072,
+   "out_bytes": 0,
+   "dtype": "c10::BFloat16",
+   "group": "0",
+   "group_ranks": [
+    0,
+    1
+   ],
+   "axes": [
+    "world",
+    "pp"
+   ],
+   "peer": 1,
+   "async": true,
+   "wait": "wait",
+   "phase": "fwd",
+   "issue_stream": "main",
+   "comm_stream": "p2p|0|1|SEND",
+   "pos": 2619,
+   "fake_kernel_us": 0.0
+  },
+  {
+   "id": "s1",
+   "type": "COMP",
+   "phase": "fwd",
+   "dur_us": 122199.615,
+   "n_ops": 139,
+   "kernels": 0,
+   "stream": "main",
+   "top_ops": [
+    [
+     "aten::linear",
+     51066.409
+    ],
+    [
+     "aten::add",
+     18663.957
+    ],
+    [
+     "aten::rms_norm",
+     18403.511
+    ],
+    [
+     "aten::scaled_dot_product_attention",
+     14199.695
+    ]
+   ]
+  },
+  {
+   "id": "s2",
+   "type": "COMP",
+   "phase": "fwd",
+   "dur_us": 24.963,
+   "n_ops": 1,
+   "kernels": 0,
+   "stream": "main",
+   "top_ops": [
+    [
+     "aten::detach",
+     24.963
+    ]
+   ]
+  },
+  {
+   "id": "m1",
+   "type": "COMM",
+   "coll": "SEND",
+   "op": "c10d::send",
+   "bytes": 131072,
+   "in_bytes": 131072,
+   "out_bytes": 0,
+   "dtype": "c10::BFloat16",
+   "group": "0",
+   "group_ranks": [
+    0,
+    1
+   ],
+   "axes": [
+    "world",
+    "pp"
+   ],
+   "peer": 1,
+   "async": true,
+   "wait": "wait",
+   "phase": "fwd",
+   "issue_stream": "main",
+   "comm_stream": "p2p|0|1|SEND",
+   "pos": 4118,
+   "fake_kernel_us": 0.0
+  },
+  {
+   "id": "m2",
+   "type": "COMM",
+   "coll": "RECV",
+   "op": "c10d::recv_",
+   "bytes": 131072,
+   "in_bytes": 0,
+   "out_bytes": 131072,
+   "dtype": "c10::BFloat16",
+   "group": "0",
+   "group_ranks": [
+    0,
+    1
+   ],
+   "axes": [
+    "world",
+    "pp"
+   ],
+   "peer": 1,
+   "async": true,
+   "wait": "wait",
+   "phase": "fwd",
+   "issue_stream": "main",
+   "comm_stream": "p2p|0|1|RECV",
+   "pos": 4120,
+   "fake_kernel_us": 0.0
+  },
+  {
+   "id": "s3",
+   "type": "COMP",
+   "phase": "bwd",
+   "dur_us": 302227.495,
+   "n_ops": 659,
+   "kernels": 0,
+   "stream": "main",
+   "top_ops": [
+    [
+     "aten::linear",
+     73665.924
+    ],
+    [
+     "aten::mm",
+     65754.515
+    ],
+    [
+     "aten::_scaled_dot_product_flash_attention_for_cpu_backward",
+     36804.231
+    ],
+    [
+     "aten::rms_norm",
+     35890.141
+    ]
+   ]
+  },
+  {
+   "id": "m3",
+   "type": "COMM",
+   "coll": "SEND",
+   "op": "c10d::send",
+   "bytes": 131072,
+   "in_bytes": 131072,
+   "out_bytes": 0,
+   "dtype": "c10::BFloat16",
+   "group": "0",
+   "group_ranks": [
+    0,
+    1
+   ],
+   "axes": [
+    "world",
+    "pp"
+   ],
+   "peer": 1,
+   "async": true,
+   "wait": "wait",
+   "phase": "fwd",
+   "issue_stream": "main",
+   "comm_stream": "p2p|0|1|SEND",
+   "pos": 9595,
+   "fake_kernel_us": 0.0
+  },
+  {
+   "id": "m4",
+   "type": "COMM",
+   "coll": "RECV",
+   "op": "c10d::recv_",
+   "bytes": 131072,
+   "in_bytes": 0,
+   "out_bytes": 131072,
+   "dtype": "c10::BFloat16",
+   "group": "0",
+   "group_ranks": [
+    0,
+    1
+   ],
+   "axes": [
+    "world",
+    "pp"
+   ],
+   "peer": 1,
+   "async": true,
+   "wait": "wait",
+   "phase": "fwd",
+   "issue_stream": "main",
+   "comm_stream": "p2p|0|1|RECV",
+   "pos": 9597,
+   "fake_kernel_us": 0.0
+  },
+  {
+   "id": "s4",
+   "type": "COMP",
+   "phase": "bwd",
+   "dur_us": 261054.792,
+   "n_ops": 659,
+   "kernels": 0,
+   "stream": "main",
+   "top_ops": [
+    [
+     "aten::linear",
+     62290.324
+    ],
+    [
+     "aten::mm",
+     60247.582
+    ],
+    [
+     "aten::rms_norm",
+     29267.314
+    ],
+    [
+     "aten::_scaled_dot_product_flash_attention_for_cpu_backward",
+     28796.906
+    ]
+   ]
+  },
+  {
+   "id": "m5",
+   "type": "COMM",
+   "coll": "SEND",
+   "op": "c10d::send",
+   "bytes": 131072,
+   "in_bytes": 131072,
+   "out_bytes": 0,
+   "dtype": "c10::BFloat16",
+   "group": "0",
+   "group_ranks": [
+    0,
+    1
+   ],
+   "axes": [
+    "world",
+    "pp"
+   ],
+   "peer": 1,
+   "async": true,
+   "wait": "wait",
+   "phase": "fwd",
+   "issue_stream": "main",
+   "comm_stream": "p2p|0|1|SEND",
+   "pos": 15055,
+   "fake_kernel_us": 0.0
+  },
+  {
+   "id": "m6",
+   "type": "COMM",
+   "coll": "RECV",
+   "op": "c10d::recv_",
+   "bytes": 131072,
+   "in_bytes": 0,
+   "out_bytes": 131072,
+   "dtype": "c10::BFloat16",
+   "group": "0",
+   "group_ranks": [
+    0,
+    1
+   ],
+   "axes": [
+    "world",
+    "pp"
+   ],
+   "peer": 1,
+   "async": true,
+   "wait": "wait",
+   "phase": "fwd",
+   "issue_stream": "main",
+   "comm_stream": "p2p|0|1|RECV",
+   "pos": 15057,
+   "fake_kernel_us": 0.0
+  },
+  {
+   "id": "s5",
+   "type": "COMP",
+   "phase": "bwd",
+   "dur_us": 207993.102,
+   "n_ops": 519,
+   "kernels": 0,
+   "stream": "main",
+   "top_ops": [
+    [
+     "aten::mm",
+     69124.554
+    ],
+    [
+     "aten::_scaled_dot_product_flash_attention_for_cpu_backward",
+     43372.921
+    ],
+    [
+     "aten::linear",
+     19879.697
+    ],
+    [
+     "aten::rms_norm",
+     14261.581
+    ]
+   ]
+  },
+  {
+   "id": "m7",
+   "type": "COMM",
+   "coll": "RECV",
+   "op": "c10d::recv_",
+   "bytes": 131072,
+   "in_bytes": 0,
+   "out_bytes": 131072,
+   "dtype": "c10::BFloat16",
+   "group": "0",
+   "group_ranks": [
+    0,
+    1
+   ],
+   "axes": [
+    "world",
+    "pp"
+   ],
+   "peer": 1,
+   "async": true,
+   "wait": "wait",
+   "phase": "fwd",
+   "issue_stream": "main",
+   "comm_stream": "p2p|0|1|RECV",
+   "pos": 19013,
+   "fake_kernel_us": 0.0
+  },
+  {
+   "id": "s6",
+   "type": "COMP",
+   "phase": "bwd",
+   "dur_us": 208449.228,
+   "n_ops": 598,
+   "kernels": 0,
+   "stream": "main",
+   "top_ops": [
+    [
+     "aten::mm",
+     60319.038
+    ],
+    [
+     "aten::_scaled_dot_product_flash_attention_for_cpu_backward",
+     29789.954
+    ],
+    [
+     "aten::linear",
+     20003.939
+    ],
+    [
+     "aten::rms_norm",
+     16634.501
+    ]
+   ]
+  },
+  {
+   "id": "m8",
+   "type": "COMM",
+   "coll": "ALL_REDUCE",
+   "op": "c10d::allreduce_",
+   "bytes": 4,
+   "in_bytes": 4,
+   "out_bytes": 4,
+   "dtype": "float",
+   "group": "0",
+   "group_ranks": [
+    0,
+    1
+   ],
+   "axes": [
+    "world",
+    "pp"
+   ],
+   "peer": null,
+   "async": false,
+   "wait": "sync",
+   "phase": "fwd",
+   "issue_stream": "main",
+   "comm_stream": "coll|0",
+   "pos": 23500,
+   "fake_kernel_us": 0.0
+  },
+  {
+   "id": "s7",
+   "type": "COMP",
+   "phase": "opt",
+   "dur_us": 9269.996,
+   "n_ops": 12,
+   "kernels": 0,
+   "stream": "main",
+   "top_ops": [
+    [
+     "aten::_fused_adamw_",
+     4842.158
+    ],
+    [
+     "aten::_foreach_add_",
+     2220.096
+    ],
+    [
+     "aten::_foreach_mul_",
+     1760.543
+    ],
+    [
+     "aten::add",
+     121.555
+    ]
+   ]
+  }
+ ],
+ "edges": [
+  [
+   "s0",
+   "m0",
+   "issue"
+  ],
+  [
+   "s0",
+   "s1",
+   "stream"
+  ],
+  [
+   "s1",
+   "s2",
+   "stream"
+  ],
+  [
+   "m0",
+   "s2",
+   "complete"
+  ],
+  [
+   "s2",
+   "m1",
+   "issue"
+  ],
+  [
+   "m0",
+   "m1",
+   "fifo"
+  ],
+  [
+   "s2",
+   "m2",
+   "issue"
+  ],
+  [
+   "s2",
+   "s3",
+   "stream"
+  ],
+  [
+   "m1",
+   "s3",
+   "complete"
+  ],
+  [
+   "m2",
+   "s3",
+   "complete"
+  ],
+  [
+   "s3",
+   "m3",
+   "issue"
+  ],
+  [
+   "m1",
+   "m3",
+   "fifo"
+  ],
+  [
+   "s3",
+   "m4",
+   "issue"
+  ],
+  [
+   "m2",
+   "m4",
+   "fifo"
+  ],
+  [
+   "s3",
+   "s4",
+   "stream"
+  ],
+  [
+   "m3",
+   "s4",
+   "complete"
+  ],
+  [
+   "m4",
+   "s4",
+   "complete"
+  ],
+  [
+   "s4",
+   "m5",
+   "issue"
+  ],
+  [
+   "m3",
+   "m5",
+   "fifo"
+  ],
+  [
+   "s4",
+   "m6",
+   "issue"
+  ],
+  [
+   "m4",
+   "m6",
+   "fifo"
+  ],
+  [
+   "s4",
+   "s5",
+   "stream"
+  ],
+  [
+   "m5",
+   "s5",
+   "complete"
+  ],
+  [
+   "m6",
+   "s5",
+   "complete"
+  ],
+  [
+   "s5",
+   "m7",
+   "issue"
+  ],
+  [
+   "m6",
+   "m7",
+   "fifo"
+  ],
+  [
+   "s5",
+   "s6",
+   "stream"
+  ],
+  [
+   "m7",
+   "s6",
+   "complete"
+  ],
+  [
+   "s6",
+   "m8",
+   "issue"
+  ],
+  [
+   "m8",
+   "s7",
+   "complete"
+  ]
+ ],
+ "end_deps": [
+  "s7"
+ ]
+}

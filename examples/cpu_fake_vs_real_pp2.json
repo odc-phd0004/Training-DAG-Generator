@@ -1,0 +1,199 @@
+{
+ "fake": "/home/claude/runs/v_fake",
+ "real": "/home/claude/runs/v_real",
+ "ranks": {
+  "0": {
+   "comm_sequence_identical": true,
+   "n_comm": [
+    9,
+    9
+   ],
+   "node_sequence_identical": true,
+   "n_nodes": [
+    17,
+    17
+   ],
+   "edges_identical": true,
+   "edge_jaccard": 1.0,
+   "compute_total_us": {
+    "fake": 1216015.3,
+    "real": 1679671.9,
+    "rel_error": -0.276
+   },
+   "compute_by_phase_us": {
+    "fwd": {
+     "fake": 227020.7,
+     "real": 226558.3,
+     "rel_error": 0.002
+    },
+    "bwd": {
+     "fake": 979724.6,
+     "real": 1441032.7,
+     "rel_error": -0.3201
+    },
+    "opt": {
+     "fake": 9270.0,
+     "real": 12080.9,
+     "rel_error": -0.2327
+    }
+   },
+   "compute_segment_wape": 0.2975,
+   "largest_segments": [
+    {
+     "fake_us": 302227.495,
+     "real_us": 437349.693,
+     "top_op": "aten::mm"
+    },
+    {
+     "fake_us": 261054.792,
+     "real_us": 355513.987,
+     "top_op": "aten::mm"
+    },
+    {
+     "fake_us": 208449.228,
+     "real_us": 338541.49,
+     "top_op": "aten::mm"
+    },
+    {
+     "fake_us": 207993.102,
+     "real_us": 309627.547,
+     "top_op": "aten::mm"
+    },
+    {
+     "fake_us": 104796.145,
+     "real_us": 122334.033,
+     "top_op": "aten::linear"
+    },
+    {
+     "fake_us": 122199.615,
+     "real_us": 104202.47,
+     "top_op": "aten::linear"
+    },
+    {
+     "fake_us": 9269.996,
+     "real_us": 12080.88,
+     "top_op": "aten::_fused_adamw_"
+    },
+    {
+     "fake_us": 24.963,
+     "real_us": 21.775,
+     "top_op": "aten::detach"
+    }
+   ],
+   "real_comm_measured": {
+    "ALL_REDUCE@world,pp": {
+     "count": 1,
+     "total_us": 0.0,
+     "bytes": 4,
+     "eff_GBps": null
+    },
+    "RECV@world,pp": {
+     "count": 4,
+     "total_us": 0.0,
+     "bytes": 524288,
+     "eff_GBps": null
+    },
+    "SEND@world,pp": {
+     "count": 4,
+     "total_us": 0.0,
+     "bytes": 524288,
+     "eff_GBps": null
+    }
+   }
+  },
+  "1": {
+   "comm_sequence_identical": true,
+   "n_comm": [
+    9,
+    9
+   ],
+   "node_sequence_identical": true,
+   "n_nodes": [
+    16,
+    16
+   ],
+   "edges_identical": true,
+   "edge_jaccard": 1.0,
+   "compute_total_us": {
+    "fake": 1323984.6,
+    "real": 1836468.0,
+    "rel_error": -0.2791
+   },
+   "compute_by_phase_us": {
+    "fwd": {
+     "fake": 31829.6,
+     "real": 30081.7,
+     "rel_error": 0.0581
+    },
+    "bwd": {
+     "fake": 1283035.6,
+     "real": 1793061.9,
+     "rel_error": -0.2844
+    },
+    "opt": {
+     "fake": 9119.4,
+     "real": 13324.5,
+     "rel_error": -0.3156
+    }
+   },
+   "compute_segment_wape": 0.2833,
+   "largest_segments": [
+    {
+     "fake_us": 336776.946,
+     "real_us": 485062.026,
+     "top_op": "aten::mm"
+    },
+    {
+     "fake_us": 302846.977,
+     "real_us": 447615.24,
+     "top_op": "aten::mm"
+    },
+    {
+     "fake_us": 315818.669,
+     "real_us": 444118.158,
+     "top_op": "aten::mm"
+    },
+    {
+     "fake_us": 327592.967,
+     "real_us": 416266.438,
+     "top_op": "aten::mm"
+    },
+    {
+     "fake_us": 16627.754,
+     "real_us": 18758.956,
+     "top_op": "aten::div"
+    },
+    {
+     "fake_us": 9119.409,
+     "real_us": 13324.519,
+     "top_op": "aten::_fused_adamw_"
+    },
+    {
+     "fake_us": 15201.838,
+     "real_us": 11322.695,
+     "top_op": "aten::sort"
+    }
+   ],
+   "real_comm_measured": {
+    "ALL_REDUCE@world,pp": {
+     "count": 1,
+     "total_us": 0.0,
+     "bytes": 4,
+     "eff_GBps": null
+    },
+    "RECV@world,pp": {
+     "count": 4,
+     "total_us": 0.0,
+     "bytes": 524288,
+     "eff_GBps": null
+    },
+    "SEND@world,pp": {
+     "count": 4,
+     "total_us": 0.0,
+     "bytes": 524288,
+     "eff_GBps": null
+    }
+   }
+  }
+ }
+}

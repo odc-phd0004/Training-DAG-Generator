@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dagtrace"
+version = "0.1.0"
+description = "Derive compute/communication DAGs of distributed training jobs from real framework execution on a single GPU"
+requires-python = ">=3.11"
+dependencies = []   # torch / torchtitan / chakra are installed by setup.sh with pinned versions
+
+[project.optional-dependencies]
+fast = ["orjson"]
+
+[tool.setuptools.packages.find]
+include = ["dagtrace*"]
